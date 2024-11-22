@@ -18,6 +18,7 @@
     "@clerk/clerk-expo": "^2.3.6",
     "@expo/metro-runtime": "~3.2.3",
     "@expo/vector-icons": "^14.0.2",
+    "@gorhom/bottom-sheet": "^5.0.6",
     "@neondatabase/serverless": "^0.10.3",
     "@react-navigation/native": "^6.0.2",
     "expo": "~51.0.28",
@@ -39,6 +40,7 @@
     "react-dom": "18.2.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "~2.16.1",
+    "react-native-get-random-values": "~1.11.0",
     "react-native-google-places-autocomplete": "^2.5.7",
     "react-native-maps": "^1.20.0",
     "react-native-maps-directions": "^1.9.0",
@@ -48,8 +50,7 @@
     "react-native-screens": "3.31.1",
     "react-native-swiper": "^1.6.0",
     "react-native-web": "~0.19.10",
-    "zustand": "^5.0.1",
-    "react-native-get-random-values": "~1.11.0"
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,8 +1,6 @@
 import { View, Image } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
-import "react-native-get-random-values";
-
 import { icons } from "@/constants";
 import { GoogleInputProps } from "@/types/type";
 

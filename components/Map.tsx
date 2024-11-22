@@ -6,6 +6,7 @@ import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { useDriverStore } from "@/store";
 import { MarkerData } from "@/types/type";
 import { icons } from "@/constants";
+import "react-native-get-random-values";
 
 const drivers = [
   {
@@ -76,6 +77,9 @@ export default function Map() {
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
   useEffect(() => {
+    //TODO: remove this
+    setDrivers(drivers);
+
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) {
         return;
