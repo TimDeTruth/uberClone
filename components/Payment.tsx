@@ -45,7 +45,7 @@ const Payment = ({
 
   const initializePaymentSheet = async () => {
     const { error } = await initPaymentSheet({
-      merchantDisplayName: "Example, Inc.",
+      merchantDisplayName: "UberClone, Inc.",
       intentConfiguration: {
         mode: {
           amount: parseInt(amount) * 100,
@@ -88,7 +88,7 @@ const Payment = ({
               }),
             });
 
-            /* creating a ride in the database, making sure the payment is successful */
+            /* creating a ride in the database, making sure the payment is successful. book a ride */
             if (result.client_secret) {
               await fetchAPI("/(api)/ride/create", {
                 method: "POST",
@@ -117,8 +117,13 @@ const Payment = ({
           }
         },
       },
+      //returnURL is the url that the user will be redirected to after the payment is successful
       returnURL: "myapp://book-ride",
     });
+
+    if (error) {
+      console.log(error);
+    }
 
     if (!error) {
       // setLoading(true);

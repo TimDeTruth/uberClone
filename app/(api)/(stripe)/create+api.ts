@@ -50,11 +50,11 @@ export async function POST(request: Request) {
     })
   );
 
-  //   return Response.json({
-  //     paymentIntent: paymentIntent.client_secret,
-  //     ephemeralKey: ephemeralKey.secret,
-  //     customer: customer.id,
-  //     publishableKey:
+  // return Response.json({
+  //   paymentIntent: paymentIntent.client_secret,
+  //   ephemeralKey: ephemeralKey.secret,
+  //   customer: customer.id,
+  //   publishableKey:
   //       "pk_test_51QO8Mm2LFwpkU952rZZeKkgedbNTRHWwxDIdEu7gXXjmhDz5Gqc4fcIK4UvJLOHkRLyDgm7FP5VrWcTKhMQR9qPM00GYjlkdNI",
   //   });
 }

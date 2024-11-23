@@ -1,6 +1,7 @@
 import { View, Text, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import MapView, { LatLng, Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapViewDirections from "react-native-maps-directions";
 import { useLocationStore } from "@/store";
 import {
   calculateDriverTimes,
@@ -8,7 +9,7 @@ import {
   generateMarkersFromData,
 } from "@/lib/map";
 import { useDriverStore } from "@/store";
-import { MarkerData, Drivers } from "@/types/type";
+import { MarkerData, Driver } from "@/types/type";
 import { icons } from "@/constants";
 import "react-native-get-random-values";
 import { useFetch } from "@/lib/fetch";
@@ -34,7 +35,7 @@ export default function Map() {
 
   const [markers, setMarkers] = useState<MarkerData[]>([]);
 
-  const { data: drivers, loading, error } = useFetch<Drivers[]>("/api/driver");
+  const { data: drivers, loading, error } = useFetch<Driver[]>("/api/driver");
 
   useEffect(() => {
     if (Array.isArray(drivers)) {
@@ -105,6 +106,31 @@ export default function Map() {
           }
         />
       ))}
+      {destinationLatitude && destinationLongitude && (
+        <>
+          <Marker
+            key={"destination"}
+            title="Destination"
+            image={icons.pin}
+            coordinate={{
+              latitude: destinationLatitude,
+              longitude: destinationLongitude,
+            }}
+          />
+
+          {/* creates the line between the user and the destination */}
+          <MapViewDirections
+            origin={{ latitude: userLatitude, longitude: userLongitude }}
+            destination={{
+              latitude: destinationLatitude,
+              longitude: destinationLongitude,
+            }}
+            apikey={process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY!}
+            strokeColors={["#0286ff"]}
+            strokeWidth={3}
+          />
+        </>
+      )}
     </MapView>
   );
 }
