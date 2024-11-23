@@ -21,6 +21,7 @@
     "@gorhom/bottom-sheet": "^5.0.6",
     "@neondatabase/serverless": "^0.10.3",
     "@react-navigation/native": "^6.0.2",
+    "@stripe/stripe-react-native": "^0.40.0",
     "expo": "~51.0.28",
     "expo-auth-session": "~5.5.2",
     "expo-constants": "~16.0.2",
@@ -50,6 +51,7 @@
     "react-native-screens": "3.31.1",
     "react-native-swiper": "^1.6.0",
     "react-native-web": "~0.19.10",
+    "stripe": "^17.4.0",
     "zustand": "^5.0.1"
   },
   "devDependencies": {

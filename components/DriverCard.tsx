@@ -4,6 +4,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { icons } from "@/constants";
 import { formatTime } from "@/lib/utils";
 import { DriverCardProps } from "@/types/type";
+import { parse } from "@babel/core";
 
 const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
   return (
@@ -41,7 +42,7 @@ const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
           </Text>
 
           <Text className="text-sm font-JakartaRegular text-general-800">
-            {formatTime(item.time!)}
+            {formatTime(parseInt(`${item.time}`) || 5)}
           </Text>
 
           <Text className="text-sm font-JakartaRegular text-general-800 mx-1">
