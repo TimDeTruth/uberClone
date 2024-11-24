@@ -1,5 +1,6 @@
 import * as SecureStore from "expo-secure-store";
-
+import * as Linking from "expo-linking";
+import { fetchAPI } from "./fetch";
 // export interface TokenCache {
 //   getToken: (key: string) => Promise<string | undefined | null>;
 //   saveToken: (key: string, token: string) => Promise<void>;
@@ -29,4 +30,54 @@ export const tokenCache = {
       return;
     }
   },
+};
+
+export const googleOauth = async (startOAuthFlow: any) => {
+  try {
+    const { createdSessionId, signIn, signUp, setActive } =
+      await startOAuthFlow({
+        redirectUrl: Linking.createURL("/(root)/(tabs)/home", {
+          scheme: "myapp",
+        }),
+      });
+
+    if (createdSessionId) {
+      if (setActive) {
+        {
+          await setActive!({ session: createdSessionId });
+        }
+
+        if (signUp.createdUserId) {
+          await fetchAPI("/(api)/user", {
+            method: "POST",
+            body: JSON.stringify({
+              name: `${signUp.firstName} ${signUp.lastName}`,
+              email: signUp.emailAddress,
+              clerkId: signUp.createdUserId,
+            }),
+          });
+        }
+
+        return {
+          success: true,
+          code: "success",
+          message: "User created successfully",
+        };
+      }
+
+      return {
+        success: false,
+        code: "success",
+        message: "User not created",
+      };
+    }
+  } catch (error: any) {
+    console.error("OAuth error", error);
+
+    return {
+      success: false,
+      code: error.code,
+      message: error?.errors[0]?.longMessage || "Something went wrong",
+    };
+  }
 };

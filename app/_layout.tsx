@@ -14,9 +14,12 @@ import { Slot } from "expo-router";
 import { tokenCache } from "@/lib/auth";
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+import { LogBox } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
+
+LogBox.ignoreLogs(["Clerk: "]); // Ignore log notification by message
 
 export default function RootLayout() {
   const [loaded] = useFonts({
